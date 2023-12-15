@@ -1,0 +1,180 @@
+.buttons{
+    width: 100%;
+    border: 1px solid grey;
+    padding: 5px;
+    background: white;
+    box-shadow:rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.buttons:hover{
+    background: red;
+    color: white;
+}
+
+.button-next{
+    width: 15%;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    background: red;
+    border: 1px solid red;
+}
+.button-prev{
+    width: 15%;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    background: red;
+    border: 1px solid red;
+}
+.previousButton{
+    width: 70%;
+    color: white;
+    background: red;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    margin-top: 1%;
+    margin-block-start: 40%;
+}
+.nextButton{
+    width: 50%;
+    color: white;
+    background: red;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    margin-top: 1%;
+    float: right;
+    margin-block-start: 40%;
+}
+.nextAndPreviousButton{
+    /* padding-bottom: 5%; */
+}
+.submitButton{
+    width: 70%;
+    color: white;
+    background: red;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    margin-top: 1%;
+    margin-block-start: 40%;
+    float: right;
+}
+.error{
+    color: red;
+}
+.login {
+    /* font-family: sans-serif; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    /* font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif; */
+    background-color: #f8f9fd;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  input[type="submit"] {
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #01d28e;
+    border: 1px solid #01d28e;
+    color: #fff;
+    padding: 10px 20px;
+  }
+  
+  input[type="submit"]:hover {
+    background: #6cf0c2;
+  }
+  
+  .button-container {
+    display: flex;
+    margin-top:21%
+  }
+  
+  .login-form {
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .list-container {
+    display: flex;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .title {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+  }
+  .form{
+    height: 300px;
+    width: 380px;
+  }
+  .sign-in{
+   
+    margin-left: 8rem;
+    color: white;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 6px;
+
+  }
+  .forgot-pass{
+    color: white;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 6px;
+  }
+  .title{
+    margin-left: 27%;
+  }
+  .active-button{
+    background: red;
+    color: white;
+  }
+  .startButton{
+    color: white;
+    text-decoration: none !important;
+  }
+  .modal-footer{
+    justify-content: space-around;
+  }
+  .yes-button{
+    width: 30% !important;
+    background: red !important;
+    color: white !important;
+    border: 1px solid red !important ;
+  }
+  .no-button{
+    width: 30% !important;
+    background: white !important;
+    color: black !important;
+    border: 1px solid red !important;
+  }
+  .activeClass{
+    background-color: #6D6D6D !important;
+    color: white !important;
+
+  }
+
