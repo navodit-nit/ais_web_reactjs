@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ais_web_reactjs/static/css/main.72bfa281.css",
-    "main.js": "/ais_web_reactjs/static/js/main.a10171fd.js",
+    "main.js": "/ais_web_reactjs/static/js/main.e19cd4c7.js",
     "static/js/787.c866cbcc.chunk.js": "/ais_web_reactjs/static/js/787.c866cbcc.chunk.js",
     "static/media/Setting.svg": "/ais_web_reactjs/static/media/Setting.8785b5575d289e11999db3e330066b34.svg",
     "static/media/audit_no.svg": "/ais_web_reactjs/static/media/audit_no.2123b677a1fd557134e4640f351a3fa4.svg",
@@ -13,11 +13,11 @@
     "static/media/Home.svg": "/ais_web_reactjs/static/media/Home.119fe4f343a7bfef4b0ae3e34d93aaa2.svg",
     "static/media/plant_name.svg": "/ais_web_reactjs/static/media/plant_name.b455996255ca4d6739c1860266000c40.svg",
     "main.72bfa281.css.map": "/ais_web_reactjs/static/css/main.72bfa281.css.map",
-    "main.a10171fd.js.map": "/ais_web_reactjs/static/js/main.a10171fd.js.map",
+    "main.e19cd4c7.js.map": "/ais_web_reactjs/static/js/main.e19cd4c7.js.map",
     "787.c866cbcc.chunk.js.map": "/ais_web_reactjs/static/js/787.c866cbcc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.72bfa281.css",
-    "static/js/main.a10171fd.js"
+    "static/js/main.e19cd4c7.js"
   ]
 }
