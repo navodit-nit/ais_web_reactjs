@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ais_web_reactjs/static/css/main.e583eb26.css",
+    "main.js": "/ais_web_reactjs/static/js/main.622ba6d1.js",
+    "static/js/787.c866cbcc.chunk.js": "/ais_web_reactjs/static/js/787.c866cbcc.chunk.js",
+    "static/media/Setting.svg": "/ais_web_reactjs/static/media/Setting.8785b5575d289e11999db3e330066b34.svg",
+    "static/media/audit_no.svg": "/ais_web_reactjs/static/media/audit_no.2123b677a1fd557134e4640f351a3fa4.svg",
+    "static/media/dashboard.svg": "/ais_web_reactjs/static/media/dashboard.594225c42e2a979e79aa760c74191b76.svg",
+    "static/media/Audits.svg": "/ais_web_reactjs/static/media/Audits.4c5d0a93917ce480a90d9478d43d3822.svg",
+    "static/media/department.svg": "/ais_web_reactjs/static/media/department.2b905865b6840c0637a8c830c7eaaade.svg",
+    "static/media/location.svg": "/ais_web_reactjs/static/media/location.710b4a7f1f2de4221700a5f159ef3e9d.svg",
+    "index.html": "/ais_web_reactjs/index.html",
+    "static/media/Home.svg": "/ais_web_reactjs/static/media/Home.119fe4f343a7bfef4b0ae3e34d93aaa2.svg",
+    "static/media/plant_name.svg": "/ais_web_reactjs/static/media/plant_name.b455996255ca4d6739c1860266000c40.svg",
+    "main.e583eb26.css.map": "/ais_web_reactjs/static/css/main.e583eb26.css.map",
+    "main.622ba6d1.js.map": "/ais_web_reactjs/static/js/main.622ba6d1.js.map",
+    "787.c866cbcc.chunk.js.map": "/ais_web_reactjs/static/js/787.c866cbcc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e583eb26.css",
+    "static/js/main.622ba6d1.js"
+  ]
+}
