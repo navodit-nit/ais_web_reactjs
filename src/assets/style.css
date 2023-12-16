@@ -177,4 +177,29 @@
     color: white !important;
 
   }
+  .loader{
+    display: block;
+    justify-content: center;
+    z-index: 0;
+    position: relative;
+    margin-top: -15%;
+  }
+  .loader1{
+    display: block;
+    justify-content: center;
+    margin-top: 15%;
+  }
+  .body{
+    -webkit-filter: blur(8px);
+-moz-filter: blur(8px);
+-ms-filter: blur(8px);
+-o-filter: blur(8px);
+filter: blur(8px);
+  }
+  .attachment{
+    opacity: 0.2;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
 

@@ -8,12 +8,14 @@ import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate} from 'react-router-dom';
+import {ThreeCircles} from  'react-loader-spinner';
 
 
 
 
 
 function Question2() {
+  const [showLoader, setShowLoader] = useState(false);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const handleClose = () => setShow(false);
@@ -41,6 +43,9 @@ function Question2() {
   const [id, setId] = useState();
   var allWithClass=null;
   useEffect(() => {
+    var  allWithClass = document.getElementsByClassName('mainBody');
+  allWithClass[0].classList.add('body') ;
+  setShowLoader(true);
       fetchData();
   }, [])
   
@@ -67,6 +72,9 @@ function Question2() {
           var  quesList = "questionList"+idFromParam;
           sessionStorage.setItem(quesList, JSON.stringify(response.data.data));  
           setQuestionCount(response.data.count); 
+          var  allWithClass = document.getElementsByClassName('mainBody');
+          allWithClass[0].classList.remove('body') ;
+          setShowLoader(false)
         })
   } 
 
@@ -194,17 +202,22 @@ function Question2() {
   const validateForm = (f) => {
     let isValid = true;
     const newErrors = {};
-    // Validate Author Response
-    if (!f.authorRes) {
+    var btnOptionAvailable = false;
+    var attachAvailable = false;
+    var subjectiveAvailable = false;
+    currentQuestion[index]?.auditor_options.forEach((element)=>{
+      if(element.response_type == 'single'){btnOptionAvailable = true;}
+      if(element.response_type == 'attachement'){attachAvailable = true;}
+      if(element.response_type == 'subjective'){subjectiveAvailable = true;}
+    })
+    if (!f.authorRes  && subjectiveAvailable) {
       newErrors.authorRes = " Enter Text Here..";
       isValid = false;
     }
-    // // Validate Button 
-    // if (f.btnOption == "" || f.btnOption == " ") {
-    //   newErrors.btnOption = "Please Select Required Button";
-    //   isValid = false;
-    // }
-
+      if (!f.btnOption  && btnOptionAvailable  ) {
+      newErrors.btnOption = "Please Select Required Button";
+      isValid = false;
+    }
     setErrors(newErrors);
     return isValid;
   };
@@ -304,8 +317,12 @@ function Question2() {
   }
     
   }
+   function handleTempClick(){
+
+   }
   return (
-    <div>
+    <>
+    <div className="mainBody">
       <form
         onSubmit={handleSubmit}
         className="container mt-2 mb-5 pb-3"
@@ -365,8 +382,9 @@ function Question2() {
                 </div>
               )) ||
               (e.response_type === "attachement" && (
-                <div className="mb-2">
+                <div className="mb-2 attachment">
                   <div className="d-flex justify-content-between">
+                 
                     <p>Attachment:</p>
                     {/* <input type="file"/> */}
                     <label htmlFor="myInput">
@@ -392,6 +410,7 @@ function Question2() {
                       borderRadius: "5px",
                     }}
                   >
+                    <h3  style={{color:"red"}}> Coming Soon...</h3>
                     {e.option1 && (
                       <div
                         style={{
@@ -560,7 +579,6 @@ function Question2() {
           <button  className={index<currentQuestion.length-1 ? "nextButton " : "d-none"}  onClick={(e)=>{ handelNextClick(e,currentQuestion[index]?.refid)}} type="submit"> Next </button>
         <button  className={index == currentQuestion.length-1 ? "submitButton " : "d-none"}  onClick={(e)=> { handleShow(e,currentQuestion[index]?.refid)}} type="submit"> Submit </button>
             </div>
-          
           </div>
         
         </div>
@@ -581,8 +599,22 @@ function Question2() {
       </Modal>
       
       <ToastContainer />
+      
 
     </div>
+    <ThreeCircles
+         height="100"
+        width="100"
+        color="red"
+        wrapperStyle={{}}
+        wrapperClass="loader"
+        visible={showLoader}
+        ariaLabel="three-circles-rotating"
+        outerCircleColor=""
+        innerCircleColor=""
+        middleCircleColor=""
+/>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import axios from "axios";
+import axios, { all } from "axios";
 import moment from 'moment';
 import { format } from 'date-fns';
 import auditNo from '../assets/svgs/audit_no.svg';
@@ -9,6 +9,7 @@ import location from '../assets/svgs/location.svg';
 import department from '../assets/svgs/department.svg';
 import plant_name from '../assets/svgs/plant_name.svg';
 import { Outlet, Link,useParams } from "react-router-dom";
+import {ThreeCircles} from  'react-loader-spinner';
 
 
 function convertThedateAndTime(e) {
@@ -28,6 +29,7 @@ function convertThedateAndTime(e) {
 
 
 function Audits() {
+  const [showLoader, setShowLoader] = useState(false);
   const startForContinue= {
     padding: '8px',
     background: '#4e4ed3',
@@ -44,6 +46,9 @@ function Audits() {
 
 const [audits,setAudits]=useState([])
 useEffect(() => {
+  var  allWithClass = document.getElementsByClassName('mainBody');
+  allWithClass[0].classList.add('body') ;
+  setShowLoader(true);
 	fetchData();
 }, [])
 const fetchData=async()=>{
@@ -53,7 +58,10 @@ const fetchData=async()=>{
         authToken: "1234567",
       };
       axios.post( "https://polycab.dotvik.com/xmwpolycab/ais/api/listDueAuditsForAuditor",body).then(response => {
-        setAudits(response.data.data);    
+        setAudits(response.data.data);  
+        var  allWithClass = document.getElementsByClassName('mainBody');
+        allWithClass[0].classList.remove('body') ;
+        setShowLoader(false);  
       })
 }
 
@@ -63,8 +71,8 @@ useEffect(() => {
   
 }, [audits])
   return (
-   
-    <div>
+   <>
+    <div className='mainBody'>
       {audits.map((d) => (
        <div className='container mt-5 mb-5' style={{width:'70%',boxShadow:'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',borderRadius:'5px'}}>
        <div className='row pt-3'>
@@ -116,8 +124,21 @@ useEffect(() => {
    
    </div>
         ))}
-      
+   
     </div>
+    <ThreeCircles
+         height="100"
+        width="100"
+        color="red"
+        wrapperStyle={{}}
+        wrapperClass="loader1"
+        visible={showLoader}
+        ariaLabel="three-circles-rotating"
+        outerCircleColor=""
+        innerCircleColor=""
+        middleCircleColor=""
+/> 
+    </>
   )
 }
 

@@ -46,7 +46,7 @@ function NavSection() {
               <div style={{display:'flex'}} >
                 <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/user-male-circle--v1.png" alt="user-male-circle--v1"/>               <div>
                   <div style={{marginLeft:'20px'}}>
-                  <p style={{marginBottom:'2px'}}>Mr.Santosh Kumar</p>
+                  <p style={{marginBottom:'2px'}}>Mr. Tushar B</p>
                   <p style={{marginBottom:'2px'}}>104103</p>
                   </div>
                </div>
