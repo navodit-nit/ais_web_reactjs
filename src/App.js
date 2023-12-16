@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
     <NavSection />
       <Routes>
-        <Route index element={<Login />} />
+        <Route index element={<Audits />} />
         <Route path="home" element={<Audits />} />
         <Route path="setting" element={<Setting />} />
         <Route path="audits" element={<Audits />} />

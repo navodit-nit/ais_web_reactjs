@@ -60,7 +60,7 @@ function Question2() {
         //         department_code: department_code,
         //        authToken: "AUTH_TOKEN",
         // };
-        axios.post("http://polycab.dotvik.com/xmwpolycab/ais/api/listAuditQuestionsForAuditInstance",body).then(response => {
+        axios.post("https://polycab.dotvik.com/xmwpolycab/ais/api/listAuditQuestionsForAuditInstance",body).then(response => {
           
           setId(idFromParam);
           setCurrentQuestion(response.data.data);
@@ -291,7 +291,7 @@ function Question2() {
     let body = arrToSend;
     console.log(body);
    
-    axios.post("http://polycab.dotvik.com/xmwpolycab/ais/api/test/captureResponseBulk",body).then(response => {
+    axios.post("https://polycab.dotvik.com/xmwpolycab/ais/api/test/captureResponseBulk",body).then(response => {
     if(true) {
       toast("Audit Response Data  saved Successfully");
       navigate('/audits');

@@ -52,7 +52,7 @@ const fetchData=async()=>{
         auditor_id: "109789",
         authToken: "1234567",
       };
-      axios.post( "http://polycab.dotvik.com/xmwpolycab/ais/api/listDueAuditsForAuditor",body).then(response => {
+      axios.post( "https://polycab.dotvik.com/xmwpolycab/ais/api/listDueAuditsForAuditor",body).then(response => {
         setAudits(response.data.data);    
       })
 }
