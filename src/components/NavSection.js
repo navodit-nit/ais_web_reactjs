@@ -18,8 +18,6 @@ function NavSection() {
     );
     allWithClass.forEach(element => {
      if(e.target.innerHTML == element.innerHTML){
-      element.classList.add('activeClass');
-      console.log(element.innerHTML);
       if(element.innerHTML.includes('Dashboard')){
         navigate('/dashboard');
       }
@@ -33,9 +31,7 @@ function NavSection() {
         navigate('/setting');
       }
      }
-     else{
-      element.classList.remove('activeClass')
-     }
+     
     });
     
   }

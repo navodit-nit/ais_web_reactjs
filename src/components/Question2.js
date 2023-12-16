@@ -7,12 +7,15 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate} from 'react-router-dom';
+
 
 
 
 
 function Question2() {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const handleClose = () => setShow(false);
   const handleShow = (e,refid) =>{
     if (validateForm(formData)) {
@@ -43,15 +46,21 @@ function Question2() {
   
 
   const fetchData=async()=>{
+   
     // const response=await axios('/test.json');
     const idFromParam = new URLSearchParams(location.search).get('id');
     const department_code = new URLSearchParams(location.search).get('d');
-        let body = {
-                audit_instance_id: idFromParam,
-                department_code: department_code,
-               authToken: "AUTH_TOKEN",
-        };
-        axios.post("http://127.0.0.1:8000/api/listAuditQuestionsForAuditInstance",body).then(response => {
+    var authToken = "AUTH_TOKEN";
+    let body = new FormData();
+    body.append("audit_instance_id", idFromParam);
+    body.append("department_code", department_code);
+    body.append("authToken", authToken);
+        // let body = {
+        //         audit_instance_id: idFromParam,
+        //         department_code: department_code,
+        //        authToken: "AUTH_TOKEN",
+        // };
+        axios.post("http://polycab.dotvik.com/xmwpolycab/ais/api/listAuditQuestionsForAuditInstance",body).then(response => {
           
           setId(idFromParam);
           setCurrentQuestion(response.data.data);
@@ -89,7 +98,6 @@ function Question2() {
         var ques = "id"+ id+"ques"+index;
         const obj = { authorRes: formData.authorRes, attachmentImg: formData.attachmentImg, btnOption:formData.btnOption,questionId:refid};
         sessionStorage.setItem(ques, JSON.stringify(obj));
-
         formData.authorRes='';
         formData.attachmentImg ='';
         formData.btnOption = '';
@@ -191,7 +199,7 @@ function Question2() {
       newErrors.authorRes = " Enter Text Here..";
       isValid = false;
     }
-    // Validate Button 
+    // // Validate Button 
     // if (f.btnOption == "" || f.btnOption == " ") {
     //   newErrors.btnOption = "Please Select Required Button";
     //   isValid = false;
@@ -220,15 +228,17 @@ function Question2() {
     for(let i = 0;i<questionCount-1;i++){
       var key = "id"+idFromParam+'ques'+i;
       var answer= JSON.parse(sessionStorage.getItem(key));
-      var auditor_subjective=null;
-      var auditor_single=null;
+      var auditor_subjective=[];
+      var auditor_single=[];
       if(answer.authorRes != null && answer.authorRes != undefined && answer.authorRes != ""){
-         auditor_subjective = "2_"+answer.authorRes;
-      }else{auditor_subjective = null }
+         var a  = "2_"+answer.authorRes;
+         auditor_subjective.push(a);
+      }else{auditor_subjective = [] }
       if(answer.btnOption != null && answer.btnOption != undefined && answer.btnOption != ""){
-        auditor_single = "4_"+ answer.btnOption;
+        var b    = "4_"+ answer.btnOption;
+        auditor_single.push(b);
       }
-      else{ auditor_single = null}
+      else{ auditor_single = []}
       var obj1 = {
         "authToken": "AUTH_TOKEN",
         "auditor_id": "109789",
@@ -241,21 +251,25 @@ function Question2() {
         "auditee_attachement": [],
         "auditee_subjective": [],
         "auditor_multi": [],
-        "auditor_single": [auditor_single],
+        "auditor_single": auditor_single,
         "auditor_boolean": [],
         "auditor_attachement": [],
-        "auditor_subjective": [auditor_subjective]
+        "auditor_subjective": auditor_subjective
       }
       arrToSend.push(obj1);
 
     }
+    auditor_subjective =[];
+    auditor_single = [];
       if(formData.authorRes != null && formData.authorRes != undefined && formData.authorRes != "" ){
-      auditor_subjective = "2_"+answer.authorRes;
-      }else{auditor_subjective = null }
+      var a  = "2_"+formData.authorRes;
+      auditor_subjective.push(a);
+      }else{auditor_subjective = [] }
 
       if(formData.btnOption != null && formData.btnOption != undefined && formData.btnOption != ""){
-      auditor_single = "4_"+ answer.btnOption;
-      }else{ auditor_single = null}
+      var b  = "4_"+ formData.btnOption;
+      auditor_single.push(b);
+      }else{ auditor_single = []}
        var obj2 = {
       "authToken": "AUTH_TOKEN",
       "auditor_id": "109789",
@@ -268,16 +282,24 @@ function Question2() {
       "auditee_attachement": [],
       "auditee_subjective": [],
       "auditor_multi": [],
-      "auditor_single": [auditor_single],
+      "auditor_single": auditor_single,
       "auditor_boolean": [],
       "auditor_attachement": [],
-      "auditor_subjective": [auditor_subjective]
+      "auditor_subjective": auditor_subjective
     }
     arrToSend.push(obj2);
     let body = arrToSend;
-    axios.post("http://127.0.0.1:8000/api/test/captureResponseBulk",body).then(response => {
-    console.log(response);
-    // toster and navigate 
+    console.log(body);
+   
+    axios.post("http://polycab.dotvik.com/xmwpolycab/ais/api/test/captureResponseBulk",body).then(response => {
+    if(true) {
+      toast("Audit Response Data  saved Successfully");
+      navigate('/audits');
+    }
+    else {
+      toast("Error")
+    }
+    
     })
   }
     

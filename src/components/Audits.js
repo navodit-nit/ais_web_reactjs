@@ -49,10 +49,10 @@ useEffect(() => {
 const fetchData=async()=>{
   // const response=await axios('/test.json');
   let body = {
-        auditor_id: 109789,
+        auditor_id: "109789",
         authToken: "1234567",
       };
-      axios.post( "http://127.0.0.1:8000/api/listDueAuditsForAuditor",body).then(response => {
+      axios.post( "http://polycab.dotvik.com/xmwpolycab/ais/api/listDueAuditsForAuditor",body).then(response => {
         setAudits(response.data.data);    
       })
 }
