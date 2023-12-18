@@ -53,11 +53,13 @@ useEffect(() => {
 }, [])
 const fetchData=async()=>{
   // const response=await axios('/test.json');
+  // var apiUrl = "https://polycab.dotvik.com/xmwpolycab/ais/api/listDueAuditsForAuditor"
+  var apiUrl = "http://127.0.0.1:8000/api/listDueAuditsForAuditor"
   let body = {
         auditor_id: "109789",
         authToken: "1234567",
       };
-      axios.post( "https://polycab.dotvik.com/xmwpolycab/ais/api/listDueAuditsForAuditor",body).then(response => {
+      axios.post( apiUrl,body).then(response => {
         setAudits(response.data.data);  
         var  allWithClass = document.getElementsByClassName('mainBody');
         allWithClass[0].classList.remove('body') ;

@@ -56,16 +56,18 @@ function Question2() {
     const idFromParam = new URLSearchParams(location.search).get('id');
     const department_code = new URLSearchParams(location.search).get('d');
     var authToken = "AUTH_TOKEN";
-    let body = new FormData();
-    body.append("audit_instance_id", idFromParam);
-    body.append("department_code", department_code);
-    body.append("authToken", authToken);
-        // let body = {
-        //         audit_instance_id: idFromParam,
-        //         department_code: department_code,
-        //        authToken: "AUTH_TOKEN",
-        // };
-        axios.post("https://polycab.dotvik.com/xmwpolycab/ais/api/listAuditQuestionsForAuditInstance",body).then(response => {
+    var apiUrlForAuditQuestions = "http://127.0.0.1:8000/api/listAuditQuestionsForAuditInstance";
+    // var apiUrlForAuditQuestions = "https://polycab.dotvik.com/xmwpolycab/ais/api/listAuditQuestionsForAuditInstance";
+    // let body = new FormData();
+    // body.append("audit_instance_id", idFromParam);
+    // body.append("department_code", department_code);
+    // body.append("authToken", authToken);
+        let body = {
+                audit_instance_id: idFromParam,
+                department_code: department_code,
+               authToken: "AUTH_TOKEN",
+        };
+        axios.post(apiUrlForAuditQuestions,body).then(response => {
           
           setId(idFromParam);
           setCurrentQuestion(response.data.data);
@@ -235,6 +237,8 @@ function Question2() {
   // }, [formData])
   // var q = currentQuestion[i];
   function handleSubmitButton(){
+    // var apiUrlForCapturingResponse = "https://polycab.dotvik.com/xmwpolycab/ais/api/test/captureResponseBulk"
+    var apiUrlForCapturingResponse = "http://127.0.0.1:8000/api/test/captureResponseBulk"
     var arrToSend =[];
     const idFromParam = new URLSearchParams(location.search).get('id');
     if (validateForm(formData)) {
@@ -304,10 +308,18 @@ function Question2() {
     let body = arrToSend;
     console.log(body);
    
-    axios.post("https://polycab.dotvik.com/xmwpolycab/ais/api/test/captureResponseBulk",body).then(response => {
+
+   
+    axios.post(apiUrlForCapturingResponse,body).then(response => {
     if(true) {
       toast("Audit Response Data  saved Successfully");
       navigate('/audits');
+      for(let i = 0;i<questionCount-1;i++){
+        var key = "id"+idFromParam+'ques'+i;
+        console.log(key);
+        sessionStorage.removeItem(key); 
+      }
+
     }
     else {
       toast("Error")

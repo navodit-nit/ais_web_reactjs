@@ -3,7 +3,8 @@ import React from "react";
 const ProgressBar = (props) => {
   const { bgcolor, completed,totalQuestions } = props;
   var width = (completed*100)/totalQuestions;
-  console.log(width);
+  var percentage = Math.ceil(width);
+  console.log(percentage);
   const containerStyles = {
     height: 20,
     width: '76%',
@@ -14,7 +15,7 @@ const ProgressBar = (props) => {
 
   const fillerStyles = {
     height: '100%',
-    width: `${width}%`,
+    width: `${width}%`, 
     backgroundColor: bgcolor,
     transition: 'width 1s ease-in-out',
     borderRadius: 'inherit',
@@ -35,9 +36,13 @@ const ProgressBar = (props) => {
     <div style={containerStyles}>
       
       <div style={fillerStyles}>
-        <span style={labelStyles}>{`${completed} / ${totalQuestions}`}</span>
+        {/* <span style={labelStyles}>{`${completed} / ${totalQuestions}`} */}
+        <span style={labelStyles}>{`${percentage}%`}
+        </span>
       </div>
+      <span style={{color:"red"}} > {completed} Completed Out Of {totalQuestions} </span>
     </div>
+   
     </>
   );
 };
