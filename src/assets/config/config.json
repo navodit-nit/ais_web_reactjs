@@ -1,6 +1,6 @@
 {
     "appBaseUrl" : "http://polycab.dotvik.com/xmwpolycab/ais/",
-    "apiUrl": "http://127.0.0.1:8000/api/",
+    "apiUrl": "http://127.0.0.1:8001/api/",
     "xmwApiUrl" : "https://polycab.dotvik.com/xmwpolycab/jsonservice",
     "employeePortal": "https://polycab.dotvik.com/employee/userList"
   }

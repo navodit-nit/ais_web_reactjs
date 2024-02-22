@@ -56,7 +56,7 @@ function Question2() {
     const idFromParam = new URLSearchParams(location.search).get('id');
     const department_code = new URLSearchParams(location.search).get('d');
     var authToken = "AUTH_TOKEN";
-    var apiUrlForAuditQuestions = "http://127.0.0.1:8000/api/listAuditQuestionsForAuditInstance";
+    var apiUrlForAuditQuestions = "http://127.0.0.1:8001/api/listAuditQuestionsForAuditInstance";
     // var apiUrlForAuditQuestions = "https://polycab.dotvik.com/xmwpolycab/ais/api/listAuditQuestionsForAuditInstance";
     // let body = new FormData();
     // body.append("audit_instance_id", idFromParam);
@@ -238,7 +238,7 @@ function Question2() {
   // var q = currentQuestion[i];
   function handleSubmitButton(){
     // var apiUrlForCapturingResponse = "https://polycab.dotvik.com/xmwpolycab/ais/api/test/captureResponseBulk"
-    var apiUrlForCapturingResponse = "http://127.0.0.1:8000/api/test/captureResponseBulk"
+    var apiUrlForCapturingResponse = "http://127.0.0.1:8001/api/test/captureResponseBulk"
     var arrToSend =[];
     const idFromParam = new URLSearchParams(location.search).get('id');
     if (validateForm(formData)) {

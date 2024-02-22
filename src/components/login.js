@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "../assets/style.css";
 import axios from "axios";
+import {Routes, Route, useNavigate} from 'react-router-dom';
+
 
 
 
@@ -9,22 +11,17 @@ function Login() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  const navigate = useNavigate();
 
   // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
-
+  
   const errors = {
-    uid: "invalid username",
-    pass: "invalid password"
+    uid: "Invalid  Username",
+    pass: "Invalid Password",
+    role: "Invalid Role"       
   };
 
   const handleSubmit = (event) => {
@@ -32,30 +29,43 @@ function Login() {
     event.preventDefault();
 
     var { uid, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uid.value);
-    let body = {
-            auditor_id: 109789,
-            authToken: "1234567",
-          };
-          axios.post("http://127.0.0.1:8000/api/listDueAuditsForAuditor",body).then(response => {
-            console.log(response);
-            })
-        .catch(function(error) {
-            // manipulate the error response here
-        });
+    // let body = {
+    //               auditor_id: 109789,
+    //              authToken: "1234567",
+    //       };
+    //       axios.post("http://127.0.0.1:8001/api/listDueAuditsForAuditor",body).then(response => {
+    //         console.log(response);
+    //         })
+    //     .catch(function(error) {
+    //     });
     // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
+    if (email&& password && role ) {
+      let body = {
+        email: email,
+         password: password,
+         role:role
+        };
+        axios.post("http://127.0.0.1:8001/api/login",body).then(response => {
+          if(response.data.error_code ==  0){
+          navigate('/audits');
+            sessionStorage.setItem("user", JSON.stringify(response.data.data));
+        } 
+        else{
+          setErrorMessages({ name: "role", message: errors.role });
+        }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      // if (userData.password !== pass.value) {
+      //   // Invalid password
+      //   setErrorMessages({ name: "pass", message: errors.pass });
+      // } else {
+      //   setIsSubmitted(true);
+      // }
     } else {
       // Username not found
-      setErrorMessages({ name: "uid", message: errors.uname });
+      setErrorMessages({ name: "uid", message: errors.uid });
     }
   };
 
@@ -70,14 +80,27 @@ function Login() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>Employee Id </label>
-          <input type="number" name="uid" required />
+          <label>Email Id</label>
+          <input type="email" name="uid" required
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+           />
           {renderErrorMessage("uid")}
         </div>
         <div className="input-container">
           <label>Password </label>
-          <input type="password" name="pass" required />
+          <input type="password" value={password} name="pass" required onChange={(e) => setPassword(e.target.value)}  />
           {renderErrorMessage("pass")}
+        </div>
+        <div className="input-container">
+          <label>Login As </label>
+          <span className="audit_type_button">
+          <label><input type='radio' name="login_type" onChange={(e) => setRole(e.target.value)}  value="auditee" ></input>Auditee &nbsp; &nbsp;
+        </label> 
+          <label><input type='radio' name="login_type" onChange={(e) => setRole(e.target.value)}  value="auditor"></input>Auditor</label>
+          </span>
+         
+          {renderErrorMessage("role")}
         </div>
         <div className="button-container ">
             <div >

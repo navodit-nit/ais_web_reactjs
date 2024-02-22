@@ -4,7 +4,6 @@ const ProgressBar = (props) => {
   const { bgcolor, completed,totalQuestions } = props;
   var width = (completed*100)/totalQuestions;
   var percentage = Math.ceil(width);
-  console.log(percentage);
   const containerStyles = {
     height: 20,
     width: '76%',
